@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:scoped_model/scoped_model.dart';
+import 'package:map_view/map_view.dart';
 // import 'package:flutter/rendering.dart';
 
 import './pages/auth.dart';
@@ -14,6 +15,7 @@ void main() {
   // debugPaintSizeEnabled = true;
   // debugPaintBaselinesEnabled = true;
   // debugPaintPointersEnabled = true;
+  MapView.setApiKey('AIzaSyD5Jh6jMnpSe3I_WdVBIM85CKwWWJvAwg4');
   runApp(MyApp());
 }
 
@@ -46,13 +48,11 @@ class _MyAppState extends State<MyApp> {
       model: _model,
       child: MaterialApp(
         // debugShowMaterialGrid: true,
-        debugShowCheckedModeBanner: false,
-        // debugShowMaterialGrid: true,
         theme: ThemeData(
             brightness: Brightness.light,
-            primaryColor: Colors.blueGrey[600],
-            accentColor: Colors.blueGrey[600],
-            buttonColor: Colors.blueGrey[600]),
+            primarySwatch: Colors.deepOrange,
+            accentColor: Colors.deepPurple,
+            buttonColor: Colors.deepPurple),
         // home: AuthPage(),
         routes: {
           '/': (BuildContext context) =>
