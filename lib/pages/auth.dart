@@ -128,7 +128,7 @@ class _AuthPageState extends State<AuthPage> {
     final double targetWidth = deviceWidth > 550.0 ? 500.0 : deviceWidth * 0.95;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login'),
+        title: Text('Login To ReuralNet'),
       ),
       body: Container(
         decoration: BoxDecoration(
