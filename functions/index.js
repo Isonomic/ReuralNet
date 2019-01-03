@@ -7,12 +7,10 @@ const fs = require("fs");
 const fbAdmin = require("firebase-admin");
 const uuid = require("uuid/v4");
 
-const gcconfig = {
+const gcs = require("@google-cloud/storage")({
   projectId: "flutter-max-e87e1",
   keyFilename: "flutter-admin.json"
-};
-
-const gcs = require("@google-cloud/storage")(gcconfig);
+});
 
 fbAdmin.initializeApp({
   credential: fbAdmin.credential.cert(require("./flutter-admin.json"))
