@@ -88,3 +88,16 @@ exports.storeImage = functions.https.onRequest((req, res) => {
     return busboy.end(req.rawBody);
   });
 });
+
+// Run firebase deploy on the code below to add a cloudFunction which removes
+// a photo form storage once it is deleted on the front end and the real time databse
+
+// exports.deleteImage = functions.database
+//   .ref("/products/{productId}")
+//   .onDelete(snapshot => {
+//     const imageData = snapshot.val();
+//     const imagePath = imageData.imagePath;
+
+//     const bucket = gcs.bucket("flutter-max-e87e1.appspot.com");
+//     return bucket.file(imagePath).delete();
+//   });
