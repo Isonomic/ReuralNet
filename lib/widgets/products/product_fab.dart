@@ -26,7 +26,7 @@ class _ProductFABState extends State<ProductFAB> with TickerProviderStateMixin {
   void initState() {
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 200),
+      duration: Duration(milliseconds: 280),
     );
     super.initState();
   }
@@ -39,13 +39,40 @@ class _ProductFABState extends State<ProductFAB> with TickerProviderStateMixin {
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              height: 70.0,
+              height: 60.0,
               width: 56.0,
               alignment: FractionalOffset.topCenter,
               child: ScaleTransition(
                 scale: CurvedAnimation(
                     parent: _controller,
-                    curve: Interval(0.0, 1.0, curve: Curves.easeOut)),
+                    curve: Interval(0.0, 1.0, curve: Curves.easeIn)),
+                child: FloatingActionButton(
+                  backgroundColor: Theme.of(context).cardColor,
+                  heroTag: 'text',
+                  mini: true,
+                  onPressed: () async {
+                    final url = 'mailto:${widget.product.userEmail}';
+                    if (await canLaunch(url)) {
+                      await launch(url);
+                    } else {
+                      throw 'Could not launch!';
+                    }
+                  },
+                  child: Icon(
+                    Icons.textsms,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              height: 60.0,
+              width: 56.0,
+              alignment: FractionalOffset.topCenter,
+              child: ScaleTransition(
+                scale: CurvedAnimation(
+                    parent: _controller,
+                    curve: Interval(0.0, 0.7, curve: Curves.easeOut)),
                 child: FloatingActionButton(
                   backgroundColor: Theme.of(context).cardColor,
                   heroTag: 'contact',
@@ -66,13 +93,13 @@ class _ProductFABState extends State<ProductFAB> with TickerProviderStateMixin {
               ),
             ),
             Container(
-              height: 70.0,
+              height: 60.0,
               width: 56.0,
               alignment: FractionalOffset.topCenter,
               child: ScaleTransition(
                 scale: CurvedAnimation(
                   parent: _controller,
-                  curve: Interval(0.0, 0.5, curve: Curves.easeOut),
+                  curve: Interval(0.0, 0.2, curve: Curves.easeOut),
                 ),
                 child: FloatingActionButton(
                   backgroundColor: Theme.of(context).cardColor,
@@ -104,8 +131,11 @@ class _ProductFABState extends State<ProductFAB> with TickerProviderStateMixin {
                 builder: (BuildContext context, Widget child) {
                   return Transform(
                     alignment: FractionalOffset.center,
-                    transform: Matrix4.rotationZ(_controller.value * 0.5 * math.pi),
-                    child: Icon(_controller.isDismissed ? Icons.more_vert : Icons.close),
+                    transform:
+                        Matrix4.rotationZ(_controller.value * 0.5 * math.pi),
+                    child: Icon(_controller.isDismissed
+                        ? Icons.more_vert
+                        : Icons.close),
                   );
                 },
               ),
