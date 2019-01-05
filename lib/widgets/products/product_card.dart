@@ -22,7 +22,7 @@ class ProductCard extends StatelessWidget {
         children: <Widget>[
           TitleDefault(product.title),
           SizedBox(
-            width: 11.0,
+            width: 8.0,
           ),
           PriceTag(product.price.toString())
         ],
@@ -37,7 +37,6 @@ class ProductCard extends StatelessWidget {
             alignment: MainAxisAlignment.center,
             children: <Widget>[
               IconButton(
-                iconSize: 37,
                 icon: Icon(Icons.info),
                 color: Theme.of(context).accentColor,
                 onPressed: () {
@@ -48,7 +47,6 @@ class ProductCard extends StatelessWidget {
                 },
               ),
               IconButton(
-                iconSize: 32,
                 icon: Icon(model.allProducts[productIndex].isFavorite
                     ? Icons.favorite
                     : Icons.favorite_border),
@@ -68,11 +66,14 @@ class ProductCard extends StatelessWidget {
     return Card(
       child: Column(
         children: <Widget>[
-          FadeInImage(
-            image: NetworkImage(product.image),
-            height: 300.0,
-            fit: BoxFit.cover,
-            placeholder: AssetImage('assets/food.jpg'),
+          Hero(
+            tag: product.id,
+            child: FadeInImage(
+              image: NetworkImage(product.image),
+              height: 300.0,
+              fit: BoxFit.cover,
+              placeholder: AssetImage('assets/food.jpg'),
+            ),
           ),
           _buildTitlePriceRow(),
           AddressTag(product.location.address),
